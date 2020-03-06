@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"crypto/ed25519"
 	"testing"
 )
 
@@ -11,11 +10,7 @@ func DoBenchmarkFunc(
 ) {
 	b.ReportAllocs()
 
-	_, priv, err := ed25519.GenerateKey(ZeroReader{})
-	if err != nil {
-		b.Fatal(err)
-	}
-	message := GenMessage()
+	priv, message := getStuff()
 
 	b.ResetTimer()
 	for i:=0; i < b.N; i++ {
